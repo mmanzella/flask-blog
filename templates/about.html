@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}about{% endblock %}
+
+{% block content_title %}<div class="blog-header">About the Blog</div>{% endblock %}
+
+{% block content %}
+<div class="container">
+<h3>Hi, this is Fiona</h3>
+<p>This blog is a side project! I used Flask, the Peewee ORM, Jinja templating, and some sweet sweet Bootstrap to tie it together. This is based on the Flask blog tutorial by Charles Leifer (check out his tutorial <a href="http://charlesleifer.com/blog/how-to-make-a-flask-blog-in-one-hour-or-less/">here</a>) and the original Flask tutorial (try it out <a href="http://flask.pocoo.org/docs/0.12/tutorial/#tutorial">here</a>).
+<p>Want to get in touch? Contact me below!</p> 
+</div>
+
+
+<div class="container">
+  <form action="{{ url_for('send_email', next=next_url) }}" class="form-horizontal" method="post">
+    <div class="form-group login_form_group">
+      <label for="full_name" class="control-label login_label">Full Name:</label>
+      <input class="form-control" id="full_name" name="full_name" type="text">
+    </div>
+    <div class="form-group login_form_group">
+      <label for="email" class="control-label login_label">Email</label>
+      <input class="form-control" id="email" name="email" type="email">
+    </div>
+    <div class="form-group login_form_group">
+      <label for="message" class="control-label login_label">Message</label>
+      <textarea class="form-control" id="message" name="message" type="textarea"></textarea>
+    </div>
+    <div class="form-group login_form_group">
+        <button class="btn btn-outline-secondary" type="submit">Log in</button>
+    </div>
+  </form>
+  </div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+

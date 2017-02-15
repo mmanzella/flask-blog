@@ -1,0 +1,10 @@
+<div class="col-sm-3 blog-sidebar" id="force_left">
+<div class="sidebar-module sidebar-module-inset">
+<h3><a href="{{ url_for('tags') }}">Tags</a></h3>
+	<dl>
+	    {% for tag in request.args|list_all_tags() %}
+		<a href="{{ url_for('blogs_by_tag', tag_name=tag.tag) }}">{{ tag.tag }} ({{ tag.count }})</a><br/>
+	{% endfor %}
+	</dl>
+</div>
+</div>

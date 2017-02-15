@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content_title %}<div class="blog-header">Tags</div>{% endblock %}
+
+{% block content %}
+  {% for tag in object_list %}
+    {% if search %}
+      {% set tag = tag.tag %}
+    {% endif %}
+    <ul>
+      <li><a href="{{ url_for('blogs_by_tag', tag_name=tag.tag) }}">
+        {{ tag.tag }} ({{ tag.count }})
+      </a></li>
+    </ul>
+  {% endfor %}
+  {% include "includes/pagination.html" %}
+{% endblock %}

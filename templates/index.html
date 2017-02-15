@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}entries{% endblock %}
+
+{% block content_title %}{% if search %}Search "{{ search }}"{% else %}<div class="blog-header">Latest Entries</div>{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+
+<div class="col-sm-9 blog-main">
+  {% for entry in object_list %}
+    {% if search %}
+      {% set entry = entry.entry %}
+    {% endif %}
+    <h3>
+      <a href="{% if entry.published %}{{ url_for('detail', slug=entry.slug) }}{% else %}{{ url_for('edit', slug=entry.slug) }}{% endif %}">
+        {{ entry.title }}
+      </a>
+    </h3>
+    {{ entry.content | make_markdown }}
+    <p>Created {{ entry.timestamp.strftime('%m/%d/%Y at %I:%M%p') }}</p>
+    <p>Tags: {% if entry.tags %}{% for tag in entry.tags %}<a href="{{ url_for('blogs_by_tag', tag_name=tag.name) }}">{{tag.name}} </a>{% endfor %}{% endif %}</p>
+  {% else %}
+    <p>No entries have been created yet.</p>
+  {% endfor %}
+  {% include "includes/pagination.html" %}
+  </div>
+  {% include "includes/tag_list.html" %}
+
+  </div>
+
+{% endblock %}
